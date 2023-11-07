@@ -1,0 +1,33 @@
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 150px;
+  background-color: var(--black);
+  /* border: 1px solid red; */
+}
+.unorderlist-container {
+  /* text-align: center; */
+  font-size: 1rem;
+  list-style: none;
+}
+.unorderlist-container li {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  /* border: 1px solid blue; */
+  width: 100%;
+}
+.unorderlist-container a {
+  text-decoration: none;
+}
+
+.unorderlist-container li img {
+  width: 25%;
+}
+#profileIcon {
+  margin-left: 50px;
+}

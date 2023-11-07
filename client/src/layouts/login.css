@@ -5,12 +5,12 @@
   text-align: center;
   padding-top: 30vh;
 }
-h1 {
+.login-container h1 {
   font-size: 3rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
 }
-a {
+.login-container a {
   margin-top: 5rem;
   font-size: 1rem;
   text-decoration: none;
