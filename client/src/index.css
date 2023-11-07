@@ -15,17 +15,5 @@
   --green: #1db954;
   --white: #ffffff;
   --black: #191414;
-}
-
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-html {
-  font-family: var(--ff-nunito-sans);
-  font-size: 16px;
-  scroll-behavior: smooth;
+  --ff-quicksand: "Quicksand", sans-serif;
 }

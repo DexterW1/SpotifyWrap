@@ -1,18 +1,14 @@
+import { useState, useEffect } from "react";
 import "./App.css";
-import axios from "axios";
-
+import Login from "./layouts/login";
+import Homepage from "./layouts/homepage";
+import { token } from "./spotify/api";
 function App() {
-  const handleLogin = () => {
-    axios.get("http://localhost:5000/callback").then((res) => {
-      console.log(res.data);
-    });
-  };
-  return (
-    <>
-      <h1>Login with Spotify</h1>
-      <button onClick={handleLogin}>Login</button>
-    </>
-  );
+  const [accessToken, setAccessToken] = useState("");
+  useEffect(() => {
+    setAccessToken(token);
+  }, []);
+  return <>{accessToken.access_token !== null ? <Homepage /> : <Login />}</>;
 }
 
 export default App;
