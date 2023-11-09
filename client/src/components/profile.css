@@ -86,7 +86,7 @@
   margin-left: 1rem;
 }
 .profile-header a {
-  margin-right: 1rem;
+  /* margin-right: 1rem; */
   outline: none;
   text-decoration: none;
   color: white;
@@ -141,4 +141,5 @@
 }
 .album-timestamp {
   color: var(--outline);
+  margin-right: 1rem;
 }

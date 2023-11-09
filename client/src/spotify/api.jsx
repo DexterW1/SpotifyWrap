@@ -33,7 +33,7 @@ const getRefreshToken = async () => {
   }
 };
 const getToken = () => {
-  if (Date.now() - getLocalTimeStamp() > exp_time) {
+  if (Date.now() - getLocalTimeStamp() >= exp_time) {
     console.log("entered date exp");
     getRefreshToken();
   }

@@ -8,6 +8,7 @@ import {
   getPlaylist,
   getTopItems,
 } from "../spotify/api";
+import Loader from "../components/loader";
 function convertMsToMin(time) {
   const totalSeconds = Math.floor(time / 1000);
   const minutes = Math.floor(totalSeconds / 60);
@@ -43,7 +44,7 @@ export default function Profile() {
     fetchData();
   }, []);
   if (!userData) {
-    return <div>loading</div>;
+    return <Loader />;
   }
   console.log(userTopItem);
   return (

@@ -1,5 +1,5 @@
 .sidebar-container {
-  /* position: fixed; */
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,35 +10,53 @@
   /* border: 1px solid red; */
 }
 .unorderlist-container {
-  /* text-align: center; */
   font-size: 1rem;
   list-style: none;
 }
 .unorderlist-container li {
-  margin-top: 2rem;
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   text-align: center;
-  /* border: 1px solid blue; */
   width: 100%;
+  transition: background-color 0.3s ease-out;
+  /* transition: border-left 0.3s ease; */
+  /* border: 1px solid turquoise; */
 }
 .unorderlist-container a {
   text-decoration: none;
+  font-size: 0.8rem;
+  color: var(--outline);
+  /* border: 1px solid green; */
 }
 #profileIcon {
-  margin-left: 38px;
+  margin-left: 0px;
 }
 #wrapIcon {
-  margin-left: 38px;
+  margin-left: 0px;
 }
 #micIcon {
-  margin-left: 38px;
+  margin-left: 0px;
 }
 #spotifyIcon {
-  width: 55%;
+  width: 75%;
 }
-noteIcon {
+#musicIcon {
+  margin-left: 0px;
 }
 .unorderlist-container li img {
-  width: 25%;
+  width: 35%;
+}
+.spotify-logo-link {
+  position: absolute;
+  top: 3vh;
+  left: 0;
+}
+.unorderlist-container .hoverable:hover {
+  background-color: rgb(24, 24, 24);
+  border-left: 5px solid rgb(30, 215, 96);
+}
+.nav-active {
+  background-color: rgb(24, 24, 24);
+  border-left: 5px solid rgb(30, 215, 96);
 }
