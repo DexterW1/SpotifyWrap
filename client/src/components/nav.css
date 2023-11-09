@@ -1,11 +1,12 @@
 .sidebar-container {
+  /* position: fixed; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  width: 150px;
-  background-color: var(--black);
+  width: 100px;
+  background-color: #040306;
   /* border: 1px solid red; */
 }
 .unorderlist-container {
@@ -24,10 +25,20 @@
 .unorderlist-container a {
   text-decoration: none;
 }
-
+#profileIcon {
+  margin-left: 38px;
+}
+#wrapIcon {
+  margin-left: 38px;
+}
+#micIcon {
+  margin-left: 38px;
+}
+#spotifyIcon {
+  width: 55%;
+}
+noteIcon {
+}
 .unorderlist-container li img {
   width: 25%;
-}
-#profileIcon {
-  margin-left: 50px;
 }

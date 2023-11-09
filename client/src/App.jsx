@@ -8,7 +8,7 @@ function App() {
   useEffect(() => {
     setAccessToken(token);
   }, []);
-  return <>{accessToken.access_token !== null ? <Homepage /> : <Login />}</>;
+  return <>{accessToken ? <Homepage /> : <Login />}</>;
 }
 
 export default App;

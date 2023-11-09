@@ -1,3 +1,14 @@
 .wrapper {
   display: flex;
 }
+.homenav-container {
+  /* width: 100px; */
+  position: fixed;
+}
+.content-container {
+  margin-left: 100px;
+  /* border: 1px solid blue; */
+  display: flex;
+  overflow-y: hidden;
+  width: 100%;
+}
