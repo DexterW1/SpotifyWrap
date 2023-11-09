@@ -39,12 +39,6 @@ const getToken = () => {
   }
   const LocalAccessToken = getLocalAccessToken();
   if (!LocalAccessToken || LocalAccessToken === undefined) {
-    // const urlParams = new URLSearchParams(window.location.hash.substring(1));
-    // const access_token = urlParams.get("access_token");
-    // const refresh_token = urlParams.get("refresh_token");
-    // setLocalAccessToken(access_token);
-    // setLocalRefreshToken(refresh_token);
-    // return { access_token, refresh_token };
     const urlParams = new URLSearchParams(window.location.hash.substring(1));
     const access_token = urlParams.get("access_token");
     if (access_token) {
@@ -116,4 +110,27 @@ export const getTopItems = async () => {
   };
   // console.log(combinedData);
   return combinedData;
+};
+
+//function to grab artist data in range
+export const getArtist = async (range) => {
+  var limit = 0;
+  var time_range = "";
+  if (range === "long") {
+    limit = 50;
+    time_range = "long_term";
+  } else if (range === "medium") {
+    limit = 30;
+    time_range = "medium_term";
+  } else if (range === "short") {
+    limit = 13;
+    time_range = "short_term";
+  }
+  console.log(limit, time_range);
+  const res = await fetch(
+    `https://api.spotify.com/v1/me/top/artists?time_range=${time_range}&limit=${limit}`,
+    { headers }
+  );
+  const data = await res.json();
+  return data;
 };
