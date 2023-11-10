@@ -1,0 +1,83 @@
+.track-container {
+  display: flex;
+  flex-direction: column;
+  padding: 80px;
+  /* min-height: 100vh; */
+  /* border: 1px solid blue; */
+  width: 100%;
+  padding-left: 14vw;
+  padding-right: 13vw;
+  margin: 0 auto;
+  /* height: 100vh; */
+}
+.tracks-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.nav button {
+  color: rgb(155, 155, 155);
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  margin-right: 1rem;
+  border: none;
+  text-decoration: none;
+  background: none;
+}
+.nav button:hover {
+  color: var(--white);
+  border-bottom: 1px solid white;
+}
+.nav .active {
+  color: var(--white);
+  border-bottom: 1px solid var(--white);
+}
+
+/* TRACK LIST STUFF */
+
+.tracks-list ul {
+  list-style: none;
+}
+.tracks-list li {
+  display: flex;
+  /* align-items: center; */
+  margin-top: 1.5rem;
+}
+.tracks-list li p {
+  margin-left: 1rem;
+}
+.track-album-info {
+  /* border: 1px solid gold; */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.track-album-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* border: 1px solid pink; */
+  overflow-x: hidden;
+}
+#songName {
+  font-size: 1.1rem;
+}
+.track-album-name .track-artists-name-container {
+  margin-left: 1rem;
+}
+.track-album-name .track-artists-name {
+  font-size: 0.8rem;
+  display: inline;
+  color: var(--outline);
+  margin: 0;
+  margin-top: 20px;
+  /* border: 2px solid blue; */
+  margin-right: 0.5rem;
+}
+.track-album-timestamp {
+  color: var(--outline);
+  margin-right: 1rem;
+}

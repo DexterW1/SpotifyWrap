@@ -114,8 +114,8 @@ export const getTopItems = async () => {
 
 //function to grab artist data in range
 export const getArtist = async (range) => {
-  var limit = 0;
-  var time_range = "";
+  let limit = 0;
+  let time_range = "";
   if (range === "long") {
     limit = 50;
     time_range = "long_term";
@@ -126,11 +126,32 @@ export const getArtist = async (range) => {
     limit = 13;
     time_range = "short_term";
   }
-  console.log(limit, time_range);
   const res = await fetch(
     `https://api.spotify.com/v1/me/top/artists?time_range=${time_range}&limit=${limit}`,
     { headers }
   );
   const data = await res.json();
+  return data;
+};
+//function to grab tracks data in range
+export const getTracks = async (range) => {
+  let limit = 0;
+  let time_range = "";
+  if (range === "long") {
+    limit = 50;
+    time_range = "long_term";
+  } else if (range === "medium") {
+    limit = 30;
+    time_range = "medium_term";
+  } else if (range === "short") {
+    limit = 13;
+    time_range = "short_term";
+  }
+  const res = await fetch(
+    `https://api.spotify.com/v1/me/top/tracks?time_range=${time_range}&limit=${limit}`,
+    { headers }
+  );
+  const data = await res.json();
+  console.log(data);
   return data;
 };
