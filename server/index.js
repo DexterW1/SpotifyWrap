@@ -10,7 +10,8 @@ app.use(cors());
 app.use(cookieParser());
 let client_id = process.env.CLIENT_ID;
 let client_secret = process.env.CLIENT_SECRET;
-let redirect_uri = "http://localhost:5000/callback";
+let redirect_uri = process.env.REDIRECT_URI || "http://localhost:5000/callback";
+let frontend_uri = process.env.FRONTEND_URI || "http://localhost:5173/#";
 const stateKey = "spotify_auth_state";
 /**
  * Generates a random string containing numbers and letters
@@ -97,7 +98,7 @@ app.get("/callback", function (req, res) {
 
         // we can also pass the token to the browser to make requests from there
         res.redirect(
-          "http://localhost:5173/#" +
+          frontend_uri +
             querystring.stringify({
               access_token: access_token,
               refresh_token: refresh_token,
