@@ -1,5 +1,3 @@
-import.meta.env.VITE_URL;
-
 const url = import.meta.env.VITE_URL || "http://localhost:5000/";
 console.log(url);
 const exp_time = 3600 * 1000;
@@ -26,7 +24,7 @@ const getLocalRefreshToken = () => {
 const getRefreshToken = async () => {
   try {
     const res = await fetch(
-      `http://localhost:5000/refresh_token?refresh_token=${getLocalRefreshToken()}`
+      `${url}refresh_token?refresh_token=${getLocalRefreshToken()}`
     );
     const data = await res.json();
     setLocalAccessToken(data.access_token);

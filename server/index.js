@@ -12,6 +12,8 @@ let client_id = process.env.CLIENT_ID;
 let client_secret = process.env.CLIENT_SECRET;
 let redirect_uri = process.env.REDIRECT_URI || "http://localhost:5000/callback";
 let frontend_uri = process.env.FRONTEND_URI || "http://localhost:5173/#";
+console.log("redirect: ", redirect_uri);
+console.log("frontend_uri: ", frontend_uri);
 const stateKey = "spotify_auth_state";
 /**
  * Generates a random string containing numbers and letters
