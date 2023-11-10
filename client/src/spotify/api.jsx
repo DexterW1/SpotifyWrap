@@ -39,6 +39,7 @@ const getToken = () => {
     console.log("entered date exp");
     getRefreshToken();
   }
+  // getRefreshToken();
   const LocalAccessToken = getLocalAccessToken();
   if (!LocalAccessToken || LocalAccessToken === undefined) {
     const urlParams = new URLSearchParams(window.location.hash.substring(1));
