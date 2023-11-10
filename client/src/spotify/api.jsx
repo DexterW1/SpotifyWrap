@@ -23,18 +23,22 @@ const getLocalRefreshToken = () => {
 
 const getRefreshToken = async () => {
   try {
-    const res = await fetch(
-      `${url}refresh_token?refresh_token=${getLocalRefreshToken()}`
-    );
-    const data = await res.json();
-    setLocalAccessToken(data.access_token);
-    window.location.reload();
-    return;
+    console.log(getLocalRefreshToken());
+    if (getLocalRefreshToken() !== null) {
+      const res = await fetch(
+        `${url}refresh_token?refresh_token=${getLocalRefreshToken()}`
+      );
+      const data = await res.json();
+      setLocalAccessToken(data.access_token);
+      window.location.reload();
+      return;
+    }
   } catch (e) {
     console.error(e);
   }
 };
 const getToken = () => {
+  console.log("calling get token");
   if (Date.now() - getLocalTimeStamp() >= exp_time) {
     console.log("entered date exp");
     getRefreshToken();
@@ -155,6 +159,6 @@ export const getTracks = async (range) => {
     { headers }
   );
   const data = await res.json();
-  console.log(data);
+  // console.log(data);
   return data;
 };

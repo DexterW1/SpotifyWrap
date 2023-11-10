@@ -46,7 +46,7 @@ export default function Profile() {
   if (!userData) {
     return <Loader />;
   }
-  console.log(userTopItem);
+  // console.log(userTopItem);
   return (
     <>
       <div className="profile-container">

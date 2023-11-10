@@ -26,7 +26,6 @@ export default function Tracks() {
     };
     fetchData();
   }, [activeButton]);
-  console.log(tracksData);
   if (!tracksData) {
     return <Loader />;
   }

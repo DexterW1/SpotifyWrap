@@ -18,7 +18,7 @@ export default function Artists() {
   if (!artistData) {
     return <Loader />;
   }
-  console.log(artistData);
+  // console.log(artistData);
   return (
     <div className="artists-container">
       <header className="artists-header">
