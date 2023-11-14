@@ -4,7 +4,7 @@ import Nav from "../components/nav";
 import Profile from "../components/profile";
 import Artists from "../components/artists";
 import Tracks from "../components/tracks";
-import Wrap from "../components/wrap";
+import Analysis from "../components/analysis";
 export default function Homepage() {
   return (
     <>
@@ -17,7 +17,7 @@ export default function Homepage() {
             <Routes>
               <Route path="/" exact element={<Profile />} />
               <Route path="/Profile" element={<Profile />} />
-              <Route path="/Wrap" element={<Wrap />} />
+              <Route path="/Wrap" element={<Analysis />} />
               <Route path="/Tracks" element={<Tracks />} />
               <Route path="/Artists" element={<Artists />} />
             </Routes>

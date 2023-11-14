@@ -64,6 +64,36 @@ export const logout = () => {
 const headers = {
   Authorization: `Bearer ${getLocalAccessToken()}`,
 };
+
+// HELPER FUNCTIONS FOR API ----------------------
+const getIdsFromTracks = (data) => {
+  let result = "";
+  for (let item of data) {
+    result += item.id + ",";
+  }
+  return result;
+};
+const getAverage = (data) => {
+  const properties = [
+    "acousticness",
+    "danceability",
+    "energy",
+    "instrumentalness",
+    "liveness",
+    "speechiness",
+    "valence",
+  ];
+  const averageValues = {};
+  properties.forEach((property) => {
+    const propertySum = data.audio_features.reduce(
+      (sum, obj) => sum + obj[property],
+      0
+    );
+    averageValues[property] = propertySum / data.audio_features.length;
+  });
+  return averageValues;
+};
+// API CALLS ---------------------------------
 //function to grab userpicture and followers
 export const getUser = async () => {
   const res = await fetch("https://api.spotify.com/v1/me", { headers });
@@ -155,4 +185,22 @@ export const getTracks = async (range) => {
   const data = await res.json();
   // console.log(data);
   return data;
+};
+
+//function to grab Audio Features in range
+export const getFeatures = async (range) => {
+  const trackData = await getTracks(range);
+  const data = getIdsFromTracks(trackData.items);
+  const res = await fetch(
+    `https://api.spotify.com/v1/audio-features?ids=${data}`,
+    { headers }
+  );
+  const result = await res.json();
+  const transformedData = Object.entries(getAverage(result)).map(
+    ([subject, value]) => ({
+      subject,
+      value,
+    })
+  );
+  return transformedData;
 };
