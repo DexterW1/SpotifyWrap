@@ -1,0 +1,44 @@
+.card-container {
+  /* margin-left: 1rem; */
+  padding: 1rem;
+  width: 15vw;
+  height: 32vh;
+  border: 1px solid rgb(34, 34, 34);
+  background-color: rgb(34, 34, 34);
+  border-radius: 10px;
+  margin: 0;
+  overflow-y: auto;
+}
+.card-container::-webkit-scrollbar {
+  /* background-color: #242424; */
+  width: 4px;
+}
+
+/* background of the scrollbar except button or resizer */
+.card-container::-webkit-scrollbar-track {
+  z-index: 1;
+}
+
+/* scrollbar itself */
+.card-container::-webkit-scrollbar-thumb {
+  background-color: rgba(145, 145, 145, 0.3);
+  background-color: none;
+  border-radius: 16px;
+  /* border: 6px solid #242424; */
+}
+
+/* set button(top and bottom of the scrollbar) */
+.card-container::-webkit-scrollbar-button {
+  display: none;
+}
+.card-container::we .card-container h3 {
+  font-size: 1rem;
+}
+.card-container img {
+  border-radius: 10px;
+  object-fit: cover;
+}
+.card-container p {
+  color: var(--outline);
+  font-size: 0.8rem;
+}

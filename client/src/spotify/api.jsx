@@ -1,5 +1,4 @@
 const url = import.meta.env.VITE_URL || "http://localhost:5000/";
-console.log(url);
 const exp_time = 3600 * 1000;
 const setLocalTimeStamp = () => {
   window.localStorage.setItem("spotify_timestamp", Date.now());
@@ -203,4 +202,43 @@ export const getFeatures = async (range) => {
     })
   );
   return transformedData;
+};
+//function to grab Artist Genere in range
+export const getGenre = async (range) => {
+  let genreCount = {};
+  const data = await getArtist(range);
+  data.items.forEach((artist) => {
+    artist.genres.forEach((genre) => {
+      if (genreCount[genre]) {
+        genreCount[genre].count += 1;
+      } else {
+        genreCount[genre] = { genre: genre, count: 1 };
+      }
+    });
+  });
+  // data.items.forEach((artist) => {
+  //   if (genreCount[artist.genres[0]]) {
+  //     genreCount[artist.genres[0]].count += 1;
+  //   } else {
+  //     genreCount[artist.genres[0]] = { genre: artist.genres[0], count: 1 };
+  //   }
+  // });
+  const dataArray = Object.values(genreCount);
+  const filteredData = dataArray.filter((item) => item.count > 1);
+  // console.log(filteredData);
+  return filteredData;
+};
+//function to get track recommendation
+export const getTrackRec = async (range) => {
+  const data = await getTracks(range);
+  const filteredData = data.items.splice(0, 5);
+  console.log(data);
+  console.log(getIdsFromTracks(filteredData));
+  const ids = getIdsFromTracks(filteredData);
+  const res = await fetch(
+    `https://api.spotify.com/v1/recommendations?limit=10&seed_tracks=${ids}`,
+    { headers }
+  );
+  const newData = await res.json();
+  return newData.tracks;
 };

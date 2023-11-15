@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 export default function Radarchart({ data }) {
-  console.log(data);
+  // console.log(data);
   if (!data) {
     return (
       <div>
@@ -27,8 +27,8 @@ export default function Radarchart({ data }) {
           <Radar
             name="Mike"
             dataKey="value"
-            stroke="#8884d8"
-            fill="#8884d8"
+            stroke="#1db954"
+            fill="#1db954"
             fillOpacity={0.6}
           />
         </RadarChart>
