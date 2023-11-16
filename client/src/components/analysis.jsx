@@ -9,6 +9,7 @@ import {
 import Radarchart from "./radarchart";
 import Barchart from "./barchart";
 import Recommendation from "./recommendation";
+import Loader from "./loader";
 export default function Analysis() {
   const [activeButton, setActiveButton] = useState("long");
   const [genre, setGenre] = useState(null);
@@ -31,7 +32,9 @@ export default function Analysis() {
     };
     fetchData();
   }, [activeButton]);
-  // console.log(trackrec);
+  if (!genre || !audioAnalysis || !trackrec || !artistrec) {
+    return <Loader />;
+  }
   return (
     <>
       <div className="analysis-container">
