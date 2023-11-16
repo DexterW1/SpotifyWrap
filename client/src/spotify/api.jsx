@@ -52,7 +52,7 @@ const getToken = () => {
 };
 export const token = getToken();
 export const logout = () => {
-  console.log("logout");
+  // console.log("logout");
   window.localStorage.removeItem("spotify_accessToken");
   window.localStorage.removeItem("spotify_refreshToken");
   window.localStorage.removeItem("spotify_timestamp");
@@ -64,7 +64,7 @@ const headers = {
   Authorization: `Bearer ${getLocalAccessToken()}`,
 };
 
-// HELPER FUNCTIONS FOR API ----------------------
+//---------------------------------------- HELPER FUNCTIONS FOR API ----------------------
 const getIdsFromTracks = (data) => {
   let result = "";
   for (let item of data) {
@@ -92,6 +92,8 @@ const getAverage = (data) => {
   });
   return averageValues;
 };
+///=================Global values ==========================
+let global;
 // API CALLS ---------------------------------
 //function to grab userpicture and followers
 export const getUser = async () => {
@@ -216,13 +218,6 @@ export const getGenre = async (range) => {
       }
     });
   });
-  // data.items.forEach((artist) => {
-  //   if (genreCount[artist.genres[0]]) {
-  //     genreCount[artist.genres[0]].count += 1;
-  //   } else {
-  //     genreCount[artist.genres[0]] = { genre: artist.genres[0], count: 1 };
-  //   }
-  // });
   const dataArray = Object.values(genreCount);
   const filteredData = dataArray.filter((item) => item.count > 1);
   // console.log(filteredData);
@@ -232,13 +227,37 @@ export const getGenre = async (range) => {
 export const getTrackRec = async (range) => {
   const data = await getTracks(range);
   const filteredData = data.items.splice(0, 5);
-  console.log(data);
-  console.log(getIdsFromTracks(filteredData));
-  const ids = getIdsFromTracks(filteredData);
+  // console.log(data);
+  // console.log(getIdsFromTracks(filteredData));
+  let ids = getIdsFromTracks(filteredData);
+  // console.log(ids.slice(0, 22));
+  ids = ids.slice(0, -1);
   const res = await fetch(
     `https://api.spotify.com/v1/recommendations?limit=10&seed_tracks=${ids}`,
     { headers }
   );
   const newData = await res.json();
+  // console.log(newData);
   return newData.tracks;
+};
+//function to get Artist recommendation
+export const getArtistRec = async (range) => {
+  let recArray = [];
+  const artistData = await getArtist(range);
+  // console.log(getIdsFromTracks(artistData.items.slice(0, 5)));
+  let stringArray = getIdsFromTracks(artistData.items.slice(0, 5)).split(",");
+  stringArray = stringArray.splice(0, stringArray.length - 1);
+
+  // Use Promise.all to wait for all fetch operations to complete
+  await Promise.all(
+    stringArray.map(async (id) => {
+      const res = await fetch(
+        `https://api.spotify.com/v1/artists/${id}/related-artists`,
+        { headers }
+      );
+      const data = await res.json();
+      recArray.push(data.artists[0], data.artists[1]);
+    })
+  );
+  return recArray;
 };

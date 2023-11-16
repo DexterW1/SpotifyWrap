@@ -1,8 +1,8 @@
 .card-container {
   /* margin-left: 1rem; */
-  padding: 1rem;
-  width: 15vw;
-  height: 32vh;
+  padding: 1.2rem;
+  width: 10vw;
+  height: 30vh;
   border: 1px solid rgb(34, 34, 34);
   background-color: rgb(34, 34, 34);
   border-radius: 10px;
@@ -41,4 +41,74 @@
 .card-container p {
   color: var(--outline);
   font-size: 0.8rem;
+}
+.artist-card-container {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  width: 13vw;
+  height: 32vh;
+  border: 1px solid rgb(34, 34, 34);
+  background-color: rgb(34, 34, 34);
+  border-radius: 10px;
+  margin: 0;
+  overflow-y: auto;
+}
+.artist-card-container img {
+  border-radius: 100%;
+  object-fit: cover;
+}
+.artist-card-container h3 {
+  margin-top: 0.8rem;
+}
+.artist-card-container::-webkit-scrollbar {
+  /* background-color: #242424; */
+  width: 4px;
+}
+
+/* background of the scrollbar except button or resizer */
+.artist-card-container::-webkit-scrollbar-track {
+  z-index: 1;
+}
+
+/* scrollbar itself */
+.artist-card-container::-webkit-scrollbar-thumb {
+  background-color: rgba(145, 145, 145, 0.3);
+  background-color: none;
+  border-radius: 16px;
+  /* border: 6px solid #242424; */
+}
+
+/* set button(top and bottom of the scrollbar) */
+.artist-card-container::-webkit-scrollbar-button {
+  display: none;
+}
+.audio-container {
+  margin-top: 0.5rem;
+  display: flex;
+  /* justify-content: center; */
+}
+.image-container-card {
+}
+#audioPlayer {
+  /* Hide all controls */
+  width: 180px;
+  height: 20px;
+}
+
+@media (max-width: 1500px) {
+  .artist-card-container img {
+    /* width: ; */
+    width: 8rem;
+    height: 8rem;
+  }
+  .card-container img {
+    width: 6rem;
+    height: 6rem;
+  }
+  .card-container h3 {
+    font-size: 1rem;
+  }
 }

@@ -15,8 +15,6 @@ export default function Barchart({ data }) {
     <>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
-          width={500}
-          height={500}
           data={data}
           margin={{
             top: 5,

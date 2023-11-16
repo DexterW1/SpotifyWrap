@@ -7,11 +7,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/scrollbar";
-export default function Recommendation({ data }) {
-  console.log(data);
+export default function Recommendation({ data, type }) {
+  // console.log(data);
   return (
     <>
-      <div className="rec-container">
+      <div key={type} className="rec-container">
         <Swiper
           slidesPerView={4}
           spaceBetween={0}
@@ -28,15 +28,23 @@ export default function Recommendation({ data }) {
           // scrollbar={{ draggable: true }}
           className="mySwiper"
         >
-          {data.map((item) => (
-            <SwiperSlide>
-              <Reccard
-                image={item.album.images[1]}
-                name={item.name}
-                artist_name={item.artists}
-              />
-            </SwiperSlide>
-          ))}
+          {type === "track"
+            ? data.map((item) => (
+                <SwiperSlide>
+                  <Reccard
+                    image={item.album.images[1]}
+                    name={item.name}
+                    artist_name={item.artists}
+                    type="track"
+                    preview={item.preview_url}
+                  />
+                </SwiperSlide>
+              ))
+            : data.map((item) => (
+                <SwiperSlide>
+                  <Reccard image={item.images[1]} name={item.name} />
+                </SwiperSlide>
+              ))}
         </Swiper>
       </div>
     </>

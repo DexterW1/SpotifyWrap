@@ -1,6 +1,11 @@
 import "./analysis.css";
 import { useState, useEffect } from "react";
-import { getFeatures, getGenre, getTrackRec } from "../spotify/api";
+import {
+  getFeatures,
+  getGenre,
+  getTrackRec,
+  getArtistRec,
+} from "../spotify/api";
 import Radarchart from "./radarchart";
 import Barchart from "./barchart";
 import Recommendation from "./recommendation";
@@ -9,6 +14,7 @@ export default function Analysis() {
   const [genre, setGenre] = useState(null);
   const [audioAnalysis, setAudioAnalysis] = useState(null);
   const [trackrec, setTrackRec] = useState(null);
+  const [artistrec, setArtistRec] = useState(null);
   const handleButton = (text) => {
     setActiveButton(text);
   };
@@ -17,14 +23,15 @@ export default function Analysis() {
       const result = await getFeatures(activeButton);
       const genreResults = await getGenre(activeButton);
       const trackrec = await getTrackRec(activeButton);
+      const artistrec = await getArtistRec(activeButton);
+      setArtistRec(artistrec);
       setTrackRec(trackrec);
       setGenre(genreResults);
-      // console.log("Entered in use Effect", result);
       setAudioAnalysis(result);
     };
     fetchData();
   }, [activeButton]);
-  console.log(trackrec);
+  // console.log(trackrec);
   return (
     <>
       <div className="analysis-container">
@@ -60,11 +67,18 @@ export default function Analysis() {
           </div>
         </div>
         <div className="recommendation-container">
-          <h2 id="track-title">Track Recommendations</h2>
+          <h2 id="track-title">Tracks Recommendations</h2>
           <div className="track-rec-container">
-            {trackrec !== null && <Recommendation data={trackrec} />}
+            {trackrec != null && (
+              <Recommendation data={trackrec} type="track" />
+            )}
           </div>
-          <div className="artist-rec-container"></div>
+          <h2 id="artist-title">Artists Recommendations</h2>
+          <div className="artist-rec-container">
+            {artistrec !== null && (
+              <Recommendation data={artistrec} type="artist" />
+            )}
+          </div>
         </div>
       </div>
     </>
